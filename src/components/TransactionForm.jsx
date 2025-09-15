@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { saveData } from "../utils/storage";
 
-export default function TransactionForm({ setTransactions }) {
+export default function TransactionForm({ transactions, setTransactions }) {
   const [form, setForm] = useState({ date: "", amount: 0, category: "", type: "Dépense", description: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTransactions(prev => [...prev, { ...form, amount: parseFloat(form.amount) }]);
+    const newTransaction = { ...form, amount: parseFloat(form.amount) };
+    const updated = [...transactions, newTransaction];
+    setTransactions(updated);
+    saveData("transactions", updated);
     setForm({ date: "", amount: 0, category: "", type: "Dépense", description: "" });
   };
 

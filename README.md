@@ -1,12 +1,32 @@
-# React + Vite
+# Budget App - Suivi des dépenses et revenus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+Cette application React permet de :
+- Ajouter des transactions (revenus et dépenses) avec date, catégorie et description.
+- Ajouter des **charges fixes mensuelles** et gérer leur montant à partir d'un mois donné.
+- Visualiser le **tableau de bord** avec total revenus, total dépenses, solde et graphique camembert.
 
-Currently, two official plugins are available:
+## Installation
+1. Cloner le projet :
+```
+git clone https://github.com/LaghaOussama/budget-app.git
+cd budget-app
+```
+2. Installer les dépendances :
+```
+npm install
+```
+3. Lancer l'application en local :
+```
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fonctionnalités
+- Persistance des données grâce à **localStorage**.
+- Charges fixes mensuelles automatiquement calculées pour chaque mois.
+- Graphiques clairs avec Recharts.
+- Design simple et professionnel.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Oussama Lagha - Projet personnel pour suivi de budget 💰
