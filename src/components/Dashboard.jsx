@@ -32,9 +32,43 @@ export default function Dashboard({ transactions, fixedCharges }) {
   const months = [
     ...new Set(transactions.map((t) => t.date.slice(0, 7))),
   ].sort();
+  const [filterType, setFilterType] = useState("Tous");
+  const [filterCategory, setFilterCategory] = useState("Tous");
+
+  const filteredTransactions = transactions.filter(
+    (t) =>
+      (filterType === "Tous" || t.type === filterType) &&
+      (filterCategory === "Tous" || t.category === filterCategory)
+  );
+
+  const categories = ["Tous", ...new Set(transactions.map((t) => t.category))];
   return (
     <div>
       <h2>Tableau de bord - {currentMonth}</h2>
+
+      <div style={{ marginBottom: "15px" }}>
+        <label>Type : </label>
+        <select
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value)}
+        >
+          <option value="Tous">Tous</option>
+          <option value="Dépense">Dépense</option>
+          <option value="Revenu">Revenu</option>
+        </select>
+
+        <label style={{ marginLeft: "10px" }}>Catégorie : </label>
+        <select
+          value={filterCategory}
+          onChange={(e) => setFilterCategory(e.target.value)}
+        >
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </div>
       <p>Revenus : {monthlyIncome} CHF</p>
       <p>Dépenses : {totalExpenses} CHF</p>
       <p>
