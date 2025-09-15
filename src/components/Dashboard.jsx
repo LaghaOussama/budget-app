@@ -1,5 +1,6 @@
 import { PieChart, Pie, Cell } from "recharts";
 import { getFixedChargesForMonth } from "../utils/storage";
+import ExportCSV from "./ExportCSV";
 
 export default function Dashboard({ transactions, fixedCharges }) {
   const COLORS = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"];
@@ -35,7 +36,6 @@ export default function Dashboard({ transactions, fixedCharges }) {
       <p>
         <strong>Solde : {balance} CHF</strong>
       </p>
-
       <PieChart width={300} height={300}>
         <Pie
           data={pieData}
@@ -50,6 +50,7 @@ export default function Dashboard({ transactions, fixedCharges }) {
           ))}
         </Pie>
       </PieChart>
+      <ExportCSV transactions={transactions} />;
     </div>
   );
 }
