@@ -1,10 +1,16 @@
-# Budget App - Suivi des dépenses et revenus
+# Budget App PRO - Suivi complet des dépenses et revenus
 
 ## Description
-Cette application React permet de :
-- Ajouter des transactions (revenus et dépenses) avec date, catégorie et description.
-- Ajouter des **charges fixes mensuelles** et gérer leur montant à partir d'un mois donné.
-- Visualiser le **tableau de bord** avec total revenus, total dépenses, solde et graphique camembert.
+Application React pour :
+- Ajouter des transactions (revenus/dépenses) avec date, catégorie, description.
+- Ajouter et modifier des **charges fixes mensuelles**, avec prise en compte automatique pour chaque mois futur.
+- Visualiser un tableau de bord clair : total revenus, total dépenses, solde et graphique camembert.
+
+## Fonctionnalités PRO
+- Persistance locale avec **localStorage**.
+- Charges fixes dynamiques et modifiables à partir d'un mois.
+- Graphiques interactifs avec Recharts.
+- Design simple et moderne, prêt pour GitHub.
 
 ## Installation
 1. Cloner le projet :
@@ -16,17 +22,11 @@ cd budget-app
 ```
 npm install
 ```
-3. Lancer l'application en local :
+3. Lancer l'application :
 ```
 npm run dev
 ```
 
-## Fonctionnalités
-- Persistance des données grâce à **localStorage**.
-- Charges fixes mensuelles automatiquement calculées pour chaque mois.
-- Graphiques clairs avec Recharts.
-- Design simple et professionnel.
-
 ---
 
-Oussama Lagha - Projet personnel pour suivi de budget 💰
+Oussama Lagha - Projet personnel et portfolio 💰

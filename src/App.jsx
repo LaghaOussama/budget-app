@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./styles.css";
 import TransactionForm from "./components/TransactionForm";
 import FixedChargesForm from "./components/FixedChargesForm";
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>💰 Budget App</h1>
+      <h1>💰 Budget App PRO</h1>
       <div className="card">
         <TransactionForm transactions={transactions} setTransactions={setTransactions} />
       </div>
