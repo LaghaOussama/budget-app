@@ -1,4 +1,15 @@
-import { PieChart, Pie, Cell } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import { getFixedChargesForMonth } from "../utils/storage";
 import ExportCSV from "./ExportCSV";
 import { useState } from "react";
@@ -40,7 +51,24 @@ export default function Dashboard({ transactions, fixedCharges }) {
       (filterType === "Tous" || t.type === filterType) &&
       (filterCategory === "Tous" || t.category === filterCategory)
   );
-
+  const barData = months.map((month) => {
+    const monthTransactions = transactions.filter(
+      (t) => t.date.slice(0, 7) === month
+    );
+    const revenus = monthTransactions
+      .filter((t) => t.type === "Revenu")
+      .reduce((a, b) => a + b.amount, 0);
+    const depenses = monthTransactions
+      .filter((t) => t.type === "Dépense")
+      .reduce((a, b) => a + b.amount, 0);
+    const charges = getFixedChargesForMonth(fixedCharges, month);
+    return {
+      month,
+      Revenus: revenus,
+      "Dépenses Variables": depenses,
+      "Charges Fixes": charges,
+    };
+  });
   const categories = ["Tous", ...new Set(transactions.map((t) => t.category))];
   return (
     <div>
@@ -88,7 +116,19 @@ export default function Dashboard({ transactions, fixedCharges }) {
           ))}
         </Pie>
       </PieChart>
-      <ExportCSV transactions={transactions} />
+      <div style={{ marginTop: "30px", width: "100%", height: 300 }}>
+        <ResponsiveContainer>
+          <BarChart data={barData}>
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="Revenus" fill="#36A2EB" />
+            <Bar dataKey="Dépenses Variables" fill="#FF6384" />
+            <Bar dataKey="Charges Fixes" fill="#FFCE56" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
       <div>
         <h3>📅 Historique mensuel</h3>
         <table
@@ -137,6 +177,8 @@ export default function Dashboard({ transactions, fixedCharges }) {
           </tbody>
         </table>
       </div>
+      <div style={{ marginTop: "15px" }}></div>
+      <ExportCSV transactions={transactions} />
     </div>
   );
 }
